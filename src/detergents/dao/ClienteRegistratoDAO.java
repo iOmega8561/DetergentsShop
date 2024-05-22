@@ -27,22 +27,18 @@ public class ClienteRegistratoDAO implements Interface<ClienteRegistrato> {
 
     private List<ClienteRegistrato> clienti;
 
-    public Boolean check(String nomeUtente, String nrTelefono) {
+    public Boolean check(String nomeUtente, String nrTelefono) throws SQLException {
         String statement = String.format(
             "select count(*) as rowCount from ClienteRegistrato where nomeUtente = \"%s\" or nrTelefono = \"%s\"",
             nomeUtente,
             nrTelefono
         );
 
-        try(ResultSet result = manager.query(statement);) { 
+        ResultSet result = manager.query(statement);
 
-            result.next();
+        result.next();
 
-            if (result.getInt("rowCount") == 0) { return false; }
-
-        } catch(SQLException error) {
-            System.err.println(error.getLocalizedMessage());
-        }
+        if (result.getInt("rowCount") == 0) { return false; }
 
         return true;
     }
@@ -50,32 +46,28 @@ public class ClienteRegistratoDAO implements Interface<ClienteRegistrato> {
     // Supported interface methods
 
     @Override
-    public List<ClienteRegistrato> fetchAll() {
+    public List<ClienteRegistrato> fetchAll() throws SQLException {
 
         if (clienti.size() != 0) { return clienti; }
 
-        try(ResultSet result = manager.query("select * from ClienteRegistrato");) {
+        ResultSet result = manager.query("select * from ClienteRegistrato");
 
-            while(result.next()) {
-                clienti.add(
-                    new ClienteRegistrato(
-                        result.getString("nomeUtente"),
-                        result.getString("password"),
-                        result.getString("nrTelefono"),
-                        result.getString("cartaCredito")
-                    )
-                );
-            }
-
-        } catch(SQLException error) {
-            System.err.println(error.getLocalizedMessage());
+        while(result.next()) {
+            clienti.add(
+                new ClienteRegistrato(
+                    result.getString("nomeUtente"),
+                    result.getString("password"),
+                    result.getString("nrTelefono"),
+                    result.getString("cartaCredito")
+                )
+            );
         }
-
+        
         return clienti;
     }
 
     @Override
-    public void save(ClienteRegistrato entity) {
+    public void save(ClienteRegistrato entity) throws SQLException {
 
         String statement = String.format(
             "insert into ClienteRegistrato values (\"%s\",\"%s\",\"%s\",\"%s\")",
@@ -86,12 +78,9 @@ public class ClienteRegistratoDAO implements Interface<ClienteRegistrato> {
         );
 
 
-        try {
-            manager.queryVoid(statement);
-            clienti.add(entity);
-        } catch(SQLException error) {
-            System.err.println(error.getLocalizedMessage());
-        }
+        
+        manager.queryVoid(statement);
+        clienti.add(entity);
     }
 
     // Unsupported interface methods

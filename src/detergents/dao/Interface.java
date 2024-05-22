@@ -11,15 +11,16 @@
 
 package detergents.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface Interface<T> {
     
-    List<T> fetchAll();
+    List<T> fetchAll() throws SQLException;
 
-    void save(T entity);
+    void save(T entity) throws SQLException;
 
-    void update(T entity);
+    void update(T entity) throws SQLException;
 
-    void delete(T entity);
+    void delete(T entity) throws SQLException;
 }
