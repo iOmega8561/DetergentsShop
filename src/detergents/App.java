@@ -11,43 +11,41 @@
 
 package detergents;
 
-import java.sql.SQLException;
-import java.util.List;
+import java.util.Scanner;
 
-import detergents.dao.ClienteRegistratoDAO;
-import detergents.entity.ClienteRegistrato;;
+import detergents.boundary.BoundaryCliente;
+import detergents.utility.InputScanner;
 
 public class App {
 
     public static void main(String[] args) {
 
-        System.out.println("APPLICATION ==> Started Detergents Shop");
+        System.out.println("APPLICAZIONE ==> Benvenuti in Detergents Shop");
 
-        ClienteRegistratoDAO crDao = new ClienteRegistratoDAO();
+        Scanner _scanner = new Scanner(System.in);
+        InputScanner scanner = new InputScanner(_scanner, System.err);
 
-        try {
-            List<ClienteRegistrato> clienti = crDao.fetchAll();
+        while(true) {
+            System.out.println("\nAPPLICAZIONE ==> Selezionare l'accesso \n"
+                             + "1) Cliente\n"
+                             + "2) Impiegato\n"
+                             + "\n"
+                             + "APPLICAZIONE ==> Digitare 0 per chiudere l'applicativo\n");
 
-            for (ClienteRegistrato cliente : clienti) {
-                System.out.println(cliente.getNomeUtente());
+            int scelta = scanner.nextInt(2); 
+
+            switch (scelta) {
+                case 0:
+                    _scanner.close();
+                    System.exit(0);
+                case 1:
+                    BoundaryCliente.main();
+                    break;
+                case 2:
+                    // To do
+                    System.exit(0);
             }
             
-            if (crDao.check("marcopisellonio", "3427923451")) {
-                System.out.println("APPLICATION ==> user exists already");
-            } else {
-                crDao.save(
-                    new ClienteRegistrato(
-                        "marcopisellonio", 
-                        "ezpassword", 
-                        "3427923451",
-                        "4444555566667777"
-                    )
-                );
-
-                System.out.println("APPLICATION ==> user saved successfully");
-            }
-        } catch(SQLException error) {
-            System.err.println(error.getLocalizedMessage());
         }
     }
 }
