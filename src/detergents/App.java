@@ -11,6 +11,7 @@
 
 package detergents;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import detergents.dao.ClienteRegistratoDAO;
@@ -24,27 +25,29 @@ public class App {
 
         ClienteRegistratoDAO crDao = new ClienteRegistratoDAO();
 
-        
+        try {
+            List<ClienteRegistrato> clienti = crDao.fetchAll();
 
-        List<ClienteRegistrato> clienti = crDao.fetchAll();
+            for (ClienteRegistrato cliente : clienti) {
+                System.out.println(cliente.getNomeUtente());
+            }
+            
+            if (crDao.check("marcopisellonio", "3427923451")) {
+                System.out.println("APPLICATION ==> user exists already");
+            } else {
+                crDao.save(
+                    new ClienteRegistrato(
+                        "marcopisellonio", 
+                        "ezpassword", 
+                        "3427923451",
+                        "4444555566667777"
+                    )
+                );
 
-        for (ClienteRegistrato cliente : clienti) {
-            System.out.println(cliente.getNomeUtente());
-        }
-
-        if (crDao.check("marcopisellonio", "3427923451")) {
-            System.out.println("APPLICATION ==> user exists already");
-        } else {
-            crDao.save(
-                new ClienteRegistrato(
-                    "marcopisellonio", 
-                    "ezpassword", 
-                    "3427923451",
-                    "4444555566667777"
-                )
-            );
-
-            System.out.println("APPLICATION ==> user saved successfully");
+                System.out.println("APPLICATION ==> user saved successfully");
+            }
+        } catch(SQLException error) {
+            System.err.println(error.getLocalizedMessage());
         }
     }
 }
