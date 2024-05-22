@@ -26,11 +26,12 @@ public final class Manager {
 
     public Connection getConnection() throws SQLException {
         
-        if (this.connection == null) {
-            this.connection = DriverManager.getConnection(url, "detergents", "detergents");
+        if (connection == null) {
+            connection = DriverManager.getConnection(url, "detergents", "detergents");
+            System.out.println("DAO MANAGER ==> Connected to localhost");
         }
 
-        return this.connection;
+        return connection;
     }
 
 }
