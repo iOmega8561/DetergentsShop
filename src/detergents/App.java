@@ -1,21 +1,24 @@
 package detergents;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.List;
 
-import detergents.dao.Manager;
+import detergents.dao.ClienteRegistratoDAO;
+import detergents.entity.ClienteRegistrato;;
 
 public class App {
 
     public static void main(String[] args) {
-        Manager manager = Manager.getInstance();
 
-        System.out.println("Acquired shared manager");
+        System.out.println("APPLICATION ==> Started Detergents Shop");
 
-        try (Connection conn = manager.getConnection();) {
-            System.out.println("Connected");
-        } catch(SQLException e) {
-            System.out.println(e.getLocalizedMessage());
+        ClienteRegistratoDAO crDao = new ClienteRegistratoDAO();
+
+        
+
+        List<ClienteRegistrato> clienti = crDao.fetchAll();
+
+        for (ClienteRegistrato cliente : clienti) {
+            System.out.println(cliente.getNomeUtente());
         }
     }
 }
