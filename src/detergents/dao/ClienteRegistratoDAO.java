@@ -38,6 +38,7 @@ public class ClienteRegistratoDAO implements Interface<ClienteRegistrato> {
 
     // Supported interface methods
 
+    @Override
     public List<ClienteRegistrato> fetchAll() {
 
         if (clienti.size() != 0) { return clienti; }
@@ -62,6 +63,7 @@ public class ClienteRegistratoDAO implements Interface<ClienteRegistrato> {
         return clienti;
     }
 
+    @Override
     public void save(ClienteRegistrato entity) {
 
         String statement = String.format(
@@ -83,11 +85,12 @@ public class ClienteRegistratoDAO implements Interface<ClienteRegistrato> {
 
     // Unsupported interface methods
     
+    @Override
     public void update(ClienteRegistrato entity) {
         throw new UnsupportedOperationException("Operazione non supportata 'update'");
     }
 
-   
+    @Override
     public void delete(ClienteRegistrato entity) {
         throw new UnsupportedOperationException("Operazione non supportata 'delete'");
     }
