@@ -3,8 +3,6 @@ package detergents.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -12,24 +10,39 @@ import detergents.entity.ClienteRegistrato;
 
 public class ClienteRegistratoDAO implements Interface<ClienteRegistrato> {
     
+    // Class-specific stubs
+
     private Manager manager;
 
     private List<ClienteRegistrato> clienti;
 
-    private ResultSet query(String queryStatement) throws SQLException {
-        Connection conn = manager.getConnection();
+    public Boolean check(String nomeUtente, String nrTelefono) {
+        String statement = String.format(
+            "select count(*) as rowCount from ClienteRegistrato where nomeUtente = \"%s\" or nrTelefono = \"%s\"",
+            nomeUtente,
+            nrTelefono
+        );
 
-        PreparedStatement preparedStatement = conn.prepareStatement(queryStatement); 
-        ResultSet result = preparedStatement.executeQuery();
+        try(ResultSet result = manager.query(statement);) { 
 
-        return result;
+            result.next();
+
+            if (result.getInt("rowCount") == 0) { return false; }
+
+        } catch(SQLException error) {
+            System.err.println(error.getLocalizedMessage());
+        }
+
+        return true;
     }
+
+    // Supported interface methods
 
     public List<ClienteRegistrato> fetchAll() {
 
         if (clienti.size() != 0) { return clienti; }
 
-        try(ResultSet result = query("select * from ClienteRegistrato");) {
+        try(ResultSet result = manager.query("select * from ClienteRegistrato");) {
 
             while(result.next()) {
                 clienti.add(
@@ -48,6 +61,38 @@ public class ClienteRegistratoDAO implements Interface<ClienteRegistrato> {
 
         return clienti;
     }
+
+    public void save(ClienteRegistrato entity) {
+
+        String statement = String.format(
+            "insert into ClienteRegistrato values (\"%s\",\"%s\",\"%s\",\"%s\")",
+            entity.getNomeUtente(),
+            entity.getPassword(),
+            entity.getNrTelefono(),
+            entity.getCartaCredito()
+        );
+
+
+        try {
+            manager.queryVoid(statement);
+            clienti.add(entity);
+        } catch(SQLException error) {
+            System.err.println(error.getLocalizedMessage());
+        }
+    }
+
+    // Unsupported interface methods
+    
+    public void update(ClienteRegistrato entity) {
+        throw new UnsupportedOperationException("Operazione non supportata 'update'");
+    }
+
+   
+    public void delete(ClienteRegistrato entity) {
+        throw new UnsupportedOperationException("Operazione non supportata 'delete'");
+    }
+
+    // init
 
     public ClienteRegistratoDAO() {
         manager = Manager.getInstance();
