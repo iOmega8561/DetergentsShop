@@ -20,5 +20,20 @@ public class App {
         for (ClienteRegistrato cliente : clienti) {
             System.out.println(cliente.getNomeUtente());
         }
+
+        if (crDao.check("marcopisellonio", "3427923451")) {
+            System.out.println("APPLICATION ==> user exists already");
+        } else {
+            crDao.save(
+                new ClienteRegistrato(
+                    "marcopisellonio", 
+                    "ezpassword", 
+                    "3427923451",
+                    "4444555566667777"
+                )
+            );
+
+            System.out.println("APPLICATION ==> user saved successfully");
+        }
     }
 }
