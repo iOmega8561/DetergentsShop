@@ -1,3 +1,5 @@
+use detergents;
+
 insert into ClienteRegistrato values 
 ("peppebrescia22", "ezpassword", "3909908076", "4444555566667777"),
 ("andreadipre45", "ezpassword", "3609908076", "4444555566667777"),

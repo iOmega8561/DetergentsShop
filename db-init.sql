@@ -1,6 +1,4 @@
-create schema if not exists detergentsShop;
-
-use detergentsShop;
+use detergents;
 
 create table if not exists ClienteRegistrato(
 	nomeUtente varchar(255) primary key,
