@@ -16,7 +16,7 @@ import detergents.utility.InputScanner;
 import detergents.utility.Logger;
 import detergents.utility.Logger.Level;
 
-public class App {
+public class Main {
 
     public static void main(String[] args) {
 
