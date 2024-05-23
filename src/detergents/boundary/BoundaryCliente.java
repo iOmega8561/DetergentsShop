@@ -11,45 +11,34 @@
 
 package detergents.boundary;
 
-import java.util.List;
 import java.util.Scanner;
 
-import detergents.dao.ClienteRegistratoDAO;
-import detergents.entity.ClienteRegistrato;
+import detergents.control.GestionePiattaforma;
 import detergents.utility.InputScanner;
 
 public class BoundaryCliente {
     
-    private static void registrazione() {
-        ClienteRegistratoDAO crDao = new ClienteRegistratoDAO();
+    private static void registrazione(GestionePiattaforma controller) {
 
         try {
-            List<ClienteRegistrato> clienti = crDao.fetchAll();
 
-            for (ClienteRegistrato cliente : clienti) {
-                System.out.println(cliente.getNomeUtente());
-            }
-            
-            if (crDao.check("marcopisellonio", "3427923451")) {
-                System.err.println("BOUNDARY CLIENTE ==> Questo utente esiste già");
-            } else {
-                crDao.save(
-                    new ClienteRegistrato(
-                        "marcopisellonio", 
-                        "ezpassword", 
-                        "3427923451",
-                        "4444555566667777"
-                    )
-                );
+            controller.registrazione(
+                "marcopisellonio", 
+                "ezpassword", 
+                "3427923451",
+                "4444555566667777"
+            );
 
-                System.out.println("BOUNDARY CLIENTE ==> Utente registrato correttamente");
-            }
+            System.out.println("BOUNDARY CLIENTE ==> Utente registrato correttamente");
+
         } catch(Throwable error) {
             System.err.println(error.getLocalizedMessage());
         }
     }
 
     public static void main() {
+
+        GestionePiattaforma controller = GestionePiattaforma.getInstance();
 
         Scanner _scanner = new Scanner(System.in);
         InputScanner scanner = new InputScanner(_scanner, System.err);
@@ -67,7 +56,7 @@ public class BoundaryCliente {
                 case 0:
                     return;
                 case 1:
-                    BoundaryCliente.registrazione();
+                    BoundaryCliente.registrazione(controller);
             }
         }
     }
