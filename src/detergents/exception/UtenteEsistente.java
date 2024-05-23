@@ -13,7 +13,7 @@ package detergents.exception;
 
 public class UtenteEsistente extends Exception {
     public String getLocalizedMessage() {
-        return "\u001B[31mERRORE ==>\u001B[0m Questo utente esiste nella base dati!";
+        return "Questo utente esiste nella base dati!";
     }
 
     public UtenteEsistente() {}
