@@ -19,6 +19,10 @@ public class InputScanner implements AutoCloseable {
     private Scanner scanner;
     private PrintStream outputStream;
 
+    public String nextString() {
+        return scanner.nextLine();
+    }
+
     public int nextInt(int max) {
 
         int value;
