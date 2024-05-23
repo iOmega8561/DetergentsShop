@@ -11,27 +11,55 @@
 
 package detergents.boundary;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import detergents.control.GestionePiattaforma;
+import detergents.exception.ParametroInvalido;
 import detergents.utility.InputScanner;
 
 public class BoundaryCliente {
     
-    private static void registrazione(GestionePiattaforma controller) {
+    private static void registrazione(InputScanner scanner, GestionePiattaforma controller) {
+
+        List<String> parameters = new ArrayList<>();
+
+        System.out.println("\u001B[33mREGISTRAZIONE ==>\u001B[0m Inserisci un NOME UTENTE\n");
+        parameters.add(scanner.nextString());
+
+        System.out.println("\u001B[33mREGISTRAZIONE ==>\u001B[0m Inserisci una PASSWORD\n");
+        parameters.add(scanner.nextString());
+
+        System.out.println("\u001B[33mREGISTRAZIONE ==>\u001B[0m Inserisci un NUMERO CELLULARE\n");
+        parameters.add(scanner.nextString());
+
+        System.out.println("\u001B[33mREGISTRAZIONE ==>\u001B[0m Inserisci il numero della CARTA DI CREDITO\n");
+        parameters.add(scanner.nextString());
 
         try {
 
-            controller.registrazione(
-                "marcopisellonio", 
-                "ezpassword", 
-                "3427923451",
-                "4444555566667777"
-            );
+            while (true) {
+                try {
+                    controller.registrazione(
+                        parameters.get(0), 
+                        parameters.get(1), 
+                        parameters.get(2),
+                        parameters.get(3)
+                    );
 
-            System.out.println("\u001B[33mBOUNDARY CLIENTE ==>\u001B[0m Utente registrato correttamente\n");
-
+                    break;
+                } catch(ParametroInvalido error) {
+                    System.err.println(error.getLocalizedMessage());
+                    System.out.println("\u001B[33mREGISTRAZIONE ==>\u001B[0m REINSERIRE IL PARAMETRO");
+                    parameters.set(error.getIndex(), scanner.nextString());
+                }
+            }
+            
         } catch(Throwable error) {
             System.err.println(error.getLocalizedMessage());
         }
+
+        System.out.println("\u001B[33mREGISTRAZIONE ==>\u001B[0m Utente registrato correttamente\n");
     }
 
     public static void main(InputScanner scanner) {
@@ -51,7 +79,7 @@ public class BoundaryCliente {
                 case 0:
                     return;
                 case 1:
-                    BoundaryCliente.registrazione(controller);
+                    BoundaryCliente.registrazione(scanner, controller);
             }
         }
     }
