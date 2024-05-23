@@ -44,7 +44,6 @@ public final class Manager {
         
         if (connection == null) {
             connection = DriverManager.getConnection(url, "detergents", "detergents");
-            System.out.println("DAO MANAGER ==> Connected to localhost");
         }
 
         return connection;

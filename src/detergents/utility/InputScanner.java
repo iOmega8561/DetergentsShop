@@ -15,7 +15,7 @@ import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class InputScanner {
+public class InputScanner implements AutoCloseable {
     private Scanner scanner;
     private PrintStream outputStream;
 
@@ -27,13 +27,13 @@ public class InputScanner {
             try {
                 value = scanner.nextInt();
             } catch(InputMismatchException error) {
-                outputStream.println("Input non valido, riprova.");
+                outputStream.println("\u001B[31mERRORE ==>\u001B[0m Input non valido, riprova.");
                 scanner.nextLine();
                 continue;
             }
 
             if (!(value >= 0 && value <= max)) {
-                outputStream.println("Valore fuori scala, riprova.");
+                outputStream.println("\u001B[31mERRORE ==>\u001B[0m Valore fuori scala, riprova.");
                 continue;
             }
 
@@ -44,8 +44,13 @@ public class InputScanner {
         return value;
     }
 
-    public InputScanner(Scanner scanner, PrintStream outputStream) {
-        this.scanner = scanner;
+    public InputScanner(PrintStream outputStream) {
+        this.scanner = new Scanner(System.in);
         this.outputStream = outputStream;
+    }
+
+    @Override
+    public void close() {
+        this.scanner.close();
     }
 }
