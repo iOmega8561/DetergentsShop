@@ -9,12 +9,12 @@
  furnished to do so, subject to the following conditions:
 */
 
-package detergents;
+package com.romomo;
 
-import detergents.boundary.BoundaryCliente;
-import detergents.utility.InputScanner;
-import detergents.utility.Logger;
-import detergents.utility.Logger.Level;
+import com.romomo.boundary.BoundaryCliente;
+import com.romomo.utility.InputScanner;
+import com.romomo.utility.Logger;
+import com.romomo.utility.Logger.Level;
 
 public class Main {
 

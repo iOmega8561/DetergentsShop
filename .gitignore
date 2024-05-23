@@ -4,6 +4,9 @@
 ## VSCode
 .vscode
 
+# Maven target folder
+detergents/target/*
+
 # Compiled class file
 *.class
 
