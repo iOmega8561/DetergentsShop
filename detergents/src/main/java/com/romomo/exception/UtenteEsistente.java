@@ -9,7 +9,7 @@
  furnished to do so, subject to the following conditions:
 */
 
-package detergents.exception;
+package com.romomo.exception;
 
 public class UtenteEsistente extends Exception {
     public String getLocalizedMessage() {

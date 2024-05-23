@@ -9,7 +9,7 @@
  furnished to do so, subject to the following conditions:
 */
 
-package detergents.entity;
+package com.romomo.entity;
 
 public class ClienteRegistrato {
     

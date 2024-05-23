@@ -9,7 +9,7 @@
  furnished to do so, subject to the following conditions:
 */
 
-package detergents.dao;
+package com.romomo.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import detergents.entity.ClienteRegistrato;
+import com.romomo.entity.ClienteRegistrato;
 
 public class ClienteRegistratoDAO implements Interface<ClienteRegistrato> {
     

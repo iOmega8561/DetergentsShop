@@ -9,18 +9,22 @@
  furnished to do so, subject to the following conditions:
 */
 
-package detergents.dao;
+package com.romomo.exception;
 
-import java.sql.SQLException;
-import java.util.List;
+public class ParametroInvalido extends Exception {
+    private int idx;
+    private String label;
 
-public interface Interface<T> {
-    
-    List<T> fetchAll() throws SQLException;
+    public int getIndex() {
+        return idx;
+    }
 
-    void save(T entity) throws SQLException;
+    public String getLocalizedMessage() {
+        return String.format("Parametro \"%s\" non valido!", label);
+    }
 
-    void update(T entity) throws SQLException;
-
-    void delete(T entity) throws SQLException;
+    public ParametroInvalido(int parameterIndex, String parameterlabel) {
+        this.idx = parameterIndex;
+        this.label = parameterlabel;
+    }
 }
