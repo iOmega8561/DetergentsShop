@@ -51,19 +51,28 @@ public class GestionePiattaforma {
         Pattern noSpecials = Pattern.compile("[^a-z0-9]", Pattern.CASE_INSENSITIVE);
         Pattern numeric = Pattern.compile("[^0-9]");
 
-        if (noSpecials.matcher(nomeUtente).find() || nomeUtente.length() > 255) {
+        if (noSpecials.matcher(nomeUtente).find() || 
+            nomeUtente.length() > 255 ||
+            nomeUtente.length() <= 0) {
+
             throw new ParametroInvalido(0, "NOME UTENTE");
         }
 
-        if (password.length() > 255) {
+        if (password.length() > 255 ||
+            password.length() <= 0) {
+
             throw new ParametroInvalido(1, "PASSWORD");
         }
 
-        if (numeric.matcher(nrTelefono).find() || nrTelefono.length() != 10) {
+        if (numeric.matcher(nrTelefono).find() || 
+            nrTelefono.length() != 10) {
+            
             throw new ParametroInvalido(2, "NUMERO CELLULARE");
         }
 
-        if (numeric.matcher(cartaCredito).find() || cartaCredito.length() != 16) {
+        if (numeric.matcher(cartaCredito).find() ||
+            cartaCredito.length() != 16) {
+            
             throw new ParametroInvalido(3, "CARTA DI CREDITO");
         }
 

@@ -15,7 +15,7 @@ import java.io.PrintStream;
 
 public class Logger {
 
-    public enum Levels {
+    public enum Level {
         NORMAL,
         ERROR,
         SUCCESS,
@@ -38,15 +38,15 @@ public class Logger {
         }
     }
 
-    private static void log(Levels level, String sender, String msg, PrintStream stream) {
-        stream.println(level.ansiString() + sender + " ==>" + Levels.RESET.ansiString() + " " + msg);
+    private static void log(Level level, String sender, String msg, PrintStream stream) {
+        stream.println(level.ansiString() + sender + " ==>" + Level.RESET.ansiString() + " " + msg);
     }
 
-    public static void stdout(Levels level, String sender, String msg) {
+    public static void stdout(Level level, String sender, String msg) {
         log(level, sender, msg, System.out);
     }
 
     public static void stderr(String msg) {
-        log(Levels.ERROR, "ERRORE", msg, System.err);
+        log(Level.ERROR, "ERRORE", msg, System.err);
     }
 }

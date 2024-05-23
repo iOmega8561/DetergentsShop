@@ -17,6 +17,8 @@ import java.util.List;
 import detergents.control.GestionePiattaforma;
 import detergents.exception.ParametroInvalido;
 import detergents.utility.InputScanner;
+import detergents.utility.Logger;
+import detergents.utility.Logger.Level;
 
 public class BoundaryCliente {
     
@@ -24,42 +26,48 @@ public class BoundaryCliente {
 
         List<String> parameters = new ArrayList<>();
 
-        System.out.println("\u001B[33mREGISTRAZIONE ==>\u001B[0m Inserisci un NOME UTENTE\n");
-        parameters.add(scanner.nextString());
+        String labels[] = {"NOME UTENTE", "PASSWORD", "NUMERO CELLULARE", "CARTA DI CREDITO"};
 
-        System.out.println("\u001B[33mREGISTRAZIONE ==>\u001B[0m Inserisci una PASSWORD\n");
-        parameters.add(scanner.nextString());
+        for (String label : labels) {
 
-        System.out.println("\u001B[33mREGISTRAZIONE ==>\u001B[0m Inserisci un NUMERO CELLULARE\n");
-        parameters.add(scanner.nextString());
+            Logger.stdout(
+                Level.NORMAL, 
+                "REGISTRAZIONE", 
+                String.format("Inserisci \"%s\":", label)
+            );
 
-        System.out.println("\u001B[33mREGISTRAZIONE ==>\u001B[0m Inserisci il numero della CARTA DI CREDITO\n");
-        parameters.add(scanner.nextString());
-
-        try {
-
-            while (true) {
-                try {
-                    controller.registrazione(
-                        parameters.get(0), 
-                        parameters.get(1), 
-                        parameters.get(2),
-                        parameters.get(3)
-                    );
-
-                    break;
-                } catch(ParametroInvalido error) {
-                    System.err.println(error.getLocalizedMessage());
-                    System.out.println("\u001B[33mREGISTRAZIONE ==>\u001B[0m REINSERIRE IL PARAMETRO");
-                    parameters.set(error.getIndex(), scanner.nextString());
-                }
-            }
-            
-        } catch(Throwable error) {
-            System.err.println(error.getLocalizedMessage());
+            parameters.add(scanner.nextString());
         }
 
-        System.out.println("\u001B[33mREGISTRAZIONE ==>\u001B[0m Utente registrato correttamente\n");
+        while (true) {
+            try {
+                controller.registrazione(
+                    parameters.get(0), 
+                    parameters.get(1), 
+                    parameters.get(2),
+                    parameters.get(3)
+                );
+
+                break;
+
+            } catch(ParametroInvalido error) {
+                Logger.stderr(error.getLocalizedMessage());
+
+                Logger.stdout(
+                    Level.NORMAL, 
+                    "REGISTRAZIONE", 
+                    "Per favore reinserire il parametro:"
+                );
+
+                parameters.set(error.getIndex(), scanner.nextString());
+
+            } catch(Throwable error) {
+                Logger.stderr(error.getLocalizedMessage());
+                return;
+            }
+        }
+            
+        Logger.stdout(Level.SUCCESS, "REGISTRAZIONE", "Registrazione avvenuta con successo!");
     }
 
     public static void main(InputScanner scanner) {
@@ -68,10 +76,17 @@ public class BoundaryCliente {
 
         while(true) {
 
-            System.out.println("\n\u001B[33mBOUNDARY CLIENTE ==>\u001B[0m Selezionare una funzionalità\n"
-                               + "1) Registrazione\n"
-                               + "\n"
-                               + "\u001B[33mBOUNDARY CLIENTE ==>\u001B[0m Digitare 0 per tornare al menù principale\n");
+            Logger.stdout(
+                Level.NORMAL, 
+                "BOUNDARY CLIENTE",
+                "Selezionare una funzionalità:\n1) Registrazione\n\n"
+            );
+
+            Logger.stdout(
+                Level.NORMAL, 
+                "BOUNDARY CLIENTE", 
+                "Digitare 0 per tornare al menù principale.\n"
+            );
 
             int scelta = scanner.nextInt(1); 
 
