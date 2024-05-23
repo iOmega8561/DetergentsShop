@@ -48,6 +48,13 @@ public class GestionePiattaforma_RegistrazioneTest {
             ),
 
             new TestCase(
+                "paolobrooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooosio22", 
+                "hulk#buster27", 
+                "3553925732", 
+                "4444444444444444"
+            ),
+
+            new TestCase(
                 "paolobrosio22", 
                 "hulk#buster27", 
                 "5ASDA2#32@", 
@@ -73,6 +80,13 @@ public class GestionePiattaforma_RegistrazioneTest {
                 "hulk#buster27", 
                 "3553925732", 
                 "777"
+            ),
+
+            new TestCase(
+                "paolobrosio22", 
+                "hulk#busteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeer27", 
+                "3334443443", 
+                "4444555566667777"
             ),
 
             new TestCase(
