@@ -67,7 +67,11 @@ public class BoundaryCliente {
             }
         }
             
-        Logger.stdout(Level.SUCCESS, "REGISTRAZIONE", "Registrazione avvenuta con successo!");
+        Logger.stdout(
+            Level.SUCCESS, 
+            "REGISTRAZIONE", 
+            "Registrazione avvenuta con successo!"
+        );
     }
 
     public static void main(InputScanner scanner) {
@@ -83,7 +87,7 @@ public class BoundaryCliente {
             );
 
             Logger.stdout(
-                Level.NORMAL, 
+                Level.INFO, 
                 "BOUNDARY CLIENTE", 
                 "Digitare 0 per tornare al menù principale.\n"
             );

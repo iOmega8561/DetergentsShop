@@ -13,21 +13,34 @@ package detergents;
 
 import detergents.boundary.BoundaryCliente;
 import detergents.utility.InputScanner;
+import detergents.utility.Logger;
+import detergents.utility.Logger.Level;
 
 public class App {
 
     public static void main(String[] args) {
 
-        System.out.println("APPLICAZIONE ==> Benvenuti in Detergents Shop");
+        Logger.stdout(
+            Level.NORMAL, 
+            "DETERGENTS", 
+            "Benvenuti in Detergents Shop"
+        );
 
         InputScanner scanner = new InputScanner(System.err);
 
         while(true) {
-            System.out.println("\n\u001B[33mAPPLICAZIONE ==>\u001B[0m Selezionare l'accesso \n"
-                             + "1) Cliente\n"
-                             + "2) Impiegato\n"
-                             + "\n"
-                             + "\n\u001B[33mAPPLICAZIONE ==>\u001B[0m Digitare 0 per chiudere l'applicativo\n");
+
+            Logger.stdout(
+                Level.NORMAL, 
+                "DETERGENTS",
+                "Selezionare un accesso:\n1) Cliente\n2) Impiegato\n\n"
+            );
+
+            Logger.stdout(
+                Level.INFO, 
+                "DETERGENTS", 
+                "Digitare 0 per chiudere l'applicativo.\n"
+            );
 
             int scelta = scanner.nextInt(2); 
 
@@ -41,8 +54,7 @@ public class App {
                     break;
 
                 case 2:
-                    // To do
-                    System.exit(0);
+                    throw new UnsupportedOperationException();
             }
             
         }

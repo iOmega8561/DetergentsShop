@@ -19,6 +19,7 @@ public class Logger {
         NORMAL,
         ERROR,
         SUCCESS,
+        INFO,
         RESET;
 
         public String ansiString() {
@@ -31,6 +32,9 @@ public class Logger {
                 
                 case SUCCESS:
                     return "\u001B[32m";
+                
+                case INFO:
+                    return "\u001B[36m";
 
                 default:
                     return "\u001B[0m";
