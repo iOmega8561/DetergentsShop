@@ -11,8 +11,6 @@
 
 package detergents.boundary;
 
-import java.util.Scanner;
-
 import detergents.control.GestionePiattaforma;
 import detergents.utility.InputScanner;
 
@@ -29,26 +27,23 @@ public class BoundaryCliente {
                 "4444555566667777"
             );
 
-            System.out.println("BOUNDARY CLIENTE ==> Utente registrato correttamente");
+            System.out.println("\u001B[33mBOUNDARY CLIENTE ==>\u001B[0m Utente registrato correttamente\n");
 
         } catch(Throwable error) {
             System.err.println(error.getLocalizedMessage());
         }
     }
 
-    public static void main() {
+    public static void main(InputScanner scanner) {
 
         GestionePiattaforma controller = GestionePiattaforma.getInstance();
 
-        Scanner _scanner = new Scanner(System.in);
-        InputScanner scanner = new InputScanner(_scanner, System.err);
-
         while(true) {
 
-            System.out.println("\nBOUNDARY CLIENTE ==> Selezionare una funzionalità\n"
+            System.out.println("\n\u001B[33mBOUNDARY CLIENTE ==>\u001B[0m Selezionare una funzionalità\n"
                                + "1) Registrazione\n"
                                + "\n"
-                               + "BOUNDARY CLIENTE ==> Digitare 0 per tornare al menù principale");
+                               + "\u001B[33mBOUNDARY CLIENTE ==>\u001B[0m Digitare 0 per tornare al menù principale\n");
 
             int scelta = scanner.nextInt(1); 
 
