@@ -11,7 +11,10 @@ build:
 	mvn -f detergents/pom.xml package
 
 run:
-	java -cp detergents/target/detergents-1.0-SNAPSHOT.jar com.romomo.Main
+	java -cp deps/mysql-connector-j-8.4.0.jar:bin/main com.romomo.Main
+
+test:
+	java -jar deps/junit-platform-console-standalone-1.11.0-M2.jar execute -c com.romomo.control.GestionePiattaforma_RegistrazioneTest -cp deps/mysql-connector-j-8.4.0.jar:bin/main:bin/test
 
 clean:
-	mvn -f detergents/pom.xml clean
+	rm -fr ./bin
