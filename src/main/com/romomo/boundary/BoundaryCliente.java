@@ -9,16 +9,16 @@
  furnished to do so, subject to the following conditions:
 */
 
-package detergents.boundary;
+package com.romomo.boundary;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import detergents.control.GestionePiattaforma;
-import detergents.exception.ParametroInvalido;
-import detergents.utility.InputScanner;
-import detergents.utility.Logger;
-import detergents.utility.Logger.Level;
+import com.romomo.control.GestionePiattaforma;
+import com.romomo.exception.ParametroInvalido;
+import com.romomo.utility.InputScanner;
+import com.romomo.utility.Logger;
+import com.romomo.utility.Logger.Level;
 
 public class BoundaryCliente {
     

@@ -9,22 +9,35 @@
  furnished to do so, subject to the following conditions:
 */
 
-package detergents.exception;
+package com.romomo.utility;
 
-public class ParametroInvalido extends Exception {
-    private int idx;
-    private String label;
+public class ElementoReport {
 
-    public int getIndex() {
-        return idx;
+    private String cliente;
+    
+    private float totale;
+    
+    private int ordini;
+
+    public String getCliente() {
+        return cliente;
     }
 
-    public String getLocalizedMessage() {
-        return String.format("Parametro \"%s\" non valido!", label);
+    public float getTotale() {
+        return totale;
     }
 
-    public ParametroInvalido(int parameterIndex, String parameterlabel) {
-        this.idx = parameterIndex;
-        this.label = parameterlabel;
+    public int getOrdini() {
+        return ordini;
+    }
+
+    public ElementoReport(
+        String cliente, 
+        float totale, 
+        int ordini
+    ) {
+        this.cliente = cliente;
+        this.totale = totale;
+        this.ordini = ordini;
     }
 }

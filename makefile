@@ -12,10 +12,10 @@ javac:
 	javac -d bin/test $$(find ./src/test | grep .java) -cp bin/main:deps/junit-platform-console-standalone-1.11.0-M2.jar
 
 run:
-	java -cp deps/mysql-connector-j-8.4.0.jar:bin/main detergents.Main
+	java -cp deps/mysql-connector-j-8.4.0.jar:bin/main com.romomo.Main
 
 test:
-	java -jar deps/junit-platform-console-standalone-1.11.0-M2.jar execute -c detergents.control.GestionePiattaforma_RegistrazioneTest -cp deps/mysql-connector-j-8.4.0.jar:bin/main:bin/test
+	java -jar deps/junit-platform-console-standalone-1.11.0-M2.jar execute -c com.romomo.control.GestionePiattaforma_RegistrazioneTest -cp deps/mysql-connector-j-8.4.0.jar:bin/main:bin/test
 
 clean:
-	rm -fr ./bin/*
+	rm -fr ./bin

@@ -9,14 +9,14 @@
  furnished to do so, subject to the following conditions:
 */
 
-package detergents.control;
+package com.romomo.control;
 
 import java.util.regex.Pattern;
 
-import detergents.dao.ClienteRegistratoDAO;
-import detergents.entity.ClienteRegistrato;
-import detergents.exception.ParametroInvalido;
-import detergents.exception.UtenteEsistente;
+import com.romomo.dao.ClienteRegistratoDAO;
+import com.romomo.entity.ClienteRegistrato;
+import com.romomo.exception.ParametroInvalido;
+import com.romomo.exception.UtenteEsistente;
 
 public class GestionePiattaforma {
     

@@ -9,35 +9,18 @@
  furnished to do so, subject to the following conditions:
 */
 
-package detergents.utility;
+package com.romomo.dao;
 
-public class ElementoReport {
+import java.sql.SQLException;
+import java.util.List;
 
-    private String cliente;
+public interface Interface<T> {
     
-    private float totale;
-    
-    private int ordini;
+    List<T> fetchAll() throws SQLException;
 
-    public String getCliente() {
-        return cliente;
-    }
+    void save(T entity) throws SQLException;
 
-    public float getTotale() {
-        return totale;
-    }
+    void update(T entity) throws SQLException;
 
-    public int getOrdini() {
-        return ordini;
-    }
-
-    public ElementoReport(
-        String cliente, 
-        float totale, 
-        int ordini
-    ) {
-        this.cliente = cliente;
-        this.totale = totale;
-        this.ordini = ordini;
-    }
+    void delete(T entity) throws SQLException;
 }
