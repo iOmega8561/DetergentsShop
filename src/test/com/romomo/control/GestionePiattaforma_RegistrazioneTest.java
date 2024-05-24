@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import com.romomo.control.GestionePiattaforma;
 import com.romomo.entity.ClienteRegistrato;
 import com.romomo.exception.ParametroInvalido;
 import com.romomo.exception.UtenteEsistente;
