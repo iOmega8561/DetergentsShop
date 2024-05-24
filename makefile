@@ -8,7 +8,8 @@
 # furnished to do so, subject to the following conditions:
 
 build:
-	mvn -f detergents/pom.xml package
+	javac -d bin/main $$(find ./src/main | grep .java)
+	javac -d bin/test $$(find ./src/test | grep .java) -cp bin/main:deps/junit-platform-console-standalone-1.11.0-M2.jar
 
 run:
 	java -cp deps/mysql-connector-j-8.4.0.jar:bin/main com.romomo.Main
