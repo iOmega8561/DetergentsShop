@@ -13,7 +13,6 @@ DetergentsShop is a team project developed as a deliverable for our Software Eng
 - Docker installed
 - Make installed
 - Java JDK version 17
-- Maven installed
 - Internet connection
 
 ### Deployment steps
