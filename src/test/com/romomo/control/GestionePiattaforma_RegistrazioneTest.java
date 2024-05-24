@@ -1,4 +1,4 @@
-package detergents.control;
+package com.romomo.control;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,10 +8,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import detergents.control.GestionePiattaforma;
-import detergents.entity.ClienteRegistrato;
-import detergents.exception.ParametroInvalido;
-import detergents.exception.UtenteEsistente;
+import com.romomo.control.GestionePiattaforma;
+import com.romomo.entity.ClienteRegistrato;
+import com.romomo.exception.ParametroInvalido;
+import com.romomo.exception.UtenteEsistente;
 
 public class GestionePiattaforma_RegistrazioneTest {
     

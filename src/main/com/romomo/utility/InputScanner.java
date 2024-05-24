@@ -9,7 +9,7 @@
  furnished to do so, subject to the following conditions:
 */
 
-package detergents.utility;
+package com.romomo.utility;
 
 import java.io.PrintStream;
 import java.util.InputMismatchException;

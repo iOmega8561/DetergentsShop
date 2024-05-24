@@ -9,7 +9,7 @@
  furnished to do so, subject to the following conditions:
 */
 
-package detergents.dao;
+package com.romomo.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
