@@ -13,14 +13,14 @@ package com.romomo.entity;
 
 public class Ordine {
 	
-	private String numeroOrdini;
+	private int numeroOrdini;
 	
-	public String getnumeroOrdini() {
+	public int getnumeroOrdini() {
         return numeroOrdini;
     }
 	
 	public numeroOrdini(
-	        String numeroOrdini
+	        int numeroOrdini
 	    ) {
 	        this.numeroOrdini = numeroOrdini;
 	    }
