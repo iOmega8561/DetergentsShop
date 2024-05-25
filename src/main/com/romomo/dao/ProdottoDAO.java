@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import com.romomo.entity.Prodotto;
 
@@ -62,8 +63,10 @@ public class ProdottoDAO implements Interface<Prodotto> {
 
     @Override
     public void save(Prodotto entity) throws SQLException {
+
         String statement = String.format(
-            "insert into Prodotto values (\"%s\",\"%s\",\"%s\",\"%f\",\"%d\")",
+            Locale.US,
+            "insert into Prodotto values (\"%s\",\"%s\",\"%s\", %.2f, %d)",
             entity.getCodice(),
             entity.getNome(),
             entity.getDescrizione(),
