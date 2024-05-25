@@ -38,14 +38,14 @@ create table if not exists Prodotto(
 	codice varchar(255) primary key,
     nome varchar(255) not null,
     descrizione varchar(255) not null,
-    prezzo double not null,
+    prezzo float not null,
     quant integer not null
 );
 
 create table if not exists Ordine(
 	id integer primary key auto_increment,
     data date not null,
-    totale double not null,
+    totale float not null,
     stato int(2) not null,
     prodotti longtext not null,
     cliente varchar(255) not null,
