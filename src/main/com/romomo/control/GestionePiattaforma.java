@@ -14,9 +14,12 @@ package com.romomo.control;
 import java.util.regex.Pattern;
 
 import com.romomo.dao.ClienteRegistratoDAO;
+import com.romomo.dao.ProdottoDAO;
 import com.romomo.entity.ClienteRegistrato;
+import com.romomo.entity.Prodotto;
 import com.romomo.exception.ParametroInvalido;
 import com.romomo.exception.UtenteEsistente;
+import com.romomo.exception.ProdottoEsistente;
 
 public class GestionePiattaforma {
     
@@ -31,7 +34,16 @@ public class GestionePiattaforma {
     
     private GestionePiattaforma() {
         this.clienteDAO = new ClienteRegistratoDAO();
+        this.prodottoDAO = new ProdottoDAO();
     }
+
+    /*
+     PROPERTIES
+      
+     CASO D'USO: INSERIMENTO PRODOTTO
+    */
+
+    private ProdottoDAO prodottoDAO;
 
     /*
      PROPERTIES
