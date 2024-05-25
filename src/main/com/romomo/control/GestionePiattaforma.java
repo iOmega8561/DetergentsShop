@@ -45,6 +45,63 @@ public class GestionePiattaforma {
 
     private ProdottoDAO prodottoDAO;
 
+    public void aggiuntaProdotto(
+        String codice,
+        String nome,
+        String descrizione,
+        float prezzo,
+        int quantita
+    ) throws Throwable {
+
+        Pattern noSpecials = Pattern.compile("[^a-z0-9]", Pattern.CASE_INSENSITIVE);
+
+        if (noSpecials.matcher(codice).find() || 
+            codice.length() > 255 ||
+            codice.length() <= 0) {
+
+            throw new ParametroInvalido(0, "CODICE");
+        }
+        
+        if (noSpecials.matcher(nome).find() || 
+            nome.length() > 255 ||
+            nome.length() <= 0) {
+
+            throw new ParametroInvalido(1, "NOME");
+        }
+
+        if (descrizione.length() > 255 ||
+            descrizione.length() <= 0) {
+
+            throw new ParametroInvalido(2,"DESCRIZIONE");
+        }
+
+        if (prezzo > 1000 ||
+            prezzo <= 0) {
+
+            throw new ParametroInvalido(3,"PREZZO");
+        }
+
+        if (quantita > 1000 ||
+            quantita <= 0) {
+
+            throw new ParametroInvalido(4,"QUANTITA'");
+        }
+
+        if (prodottoDAO.check(codice)) {
+            throw new ProdottoEsistente();
+        }
+
+        prodottoDAO.save(
+            new Prodotto(
+                codice, 
+                nome, 
+                descrizione,
+                prezzo,
+                quantita
+            )
+        );
+    }
+
     /*
      PROPERTIES
       
