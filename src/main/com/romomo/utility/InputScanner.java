@@ -21,6 +21,30 @@ public class InputScanner implements AutoCloseable {
         return scanner.nextLine();
     }
 
+    public float nextFloat(float max) {
+        float value;
+
+        while(true) {
+            try {
+                value = scanner.nextFloat();
+            } catch(InputMismatchException error) {
+                Logger.stderr("Input non valido, riprova.");
+                scanner.nextLine();
+                continue;
+            }
+
+            if ( max >= 0 && !(value >= 0 && value <= max) ) {
+                Logger.stderr("Input fuori scala, riprova.");
+                continue;
+            }
+
+            break;
+        }
+
+        scanner.nextLine();
+        return value;
+    }
+
     public int nextInt(int max) {
 
         int value;
@@ -34,7 +58,7 @@ public class InputScanner implements AutoCloseable {
                 continue;
             }
 
-            if (!(value >= 0 && value <= max)) {
+            if ( max >= 0 && !(value >= 0 && value <= max) ) {
                 Logger.stderr("Input fuori scala, riprova.");
                 continue;
             }
