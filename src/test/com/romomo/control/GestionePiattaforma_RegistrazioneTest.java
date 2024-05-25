@@ -14,7 +14,7 @@ import com.romomo.exception.UtenteEsistente;
 
 public class GestionePiattaforma_RegistrazioneTest {
     
-    GestionePiattaforma contorller;
+    GestionePiattaforma controller;
 
     static class TestCase extends ClienteRegistrato {
         
@@ -100,7 +100,7 @@ public class GestionePiattaforma_RegistrazioneTest {
     }
 
     GestionePiattaforma_RegistrazioneTest() {
-        contorller = GestionePiattaforma.getInstance();
+        controller = GestionePiattaforma.getInstance();
     }
 
     @ParameterizedTest
@@ -111,7 +111,7 @@ public class GestionePiattaforma_RegistrazioneTest {
 
         try {
 
-            contorller.registrazione(
+            controller.registrazione(
                 testCase.getNomeUtente(), 
                 testCase.getPassword(),
                 testCase.getNrTelefono(),
