@@ -26,7 +26,7 @@ public class Main {
             "Benvenuti in Detergents Shop"
         );
 
-        InputScanner scanner = new InputScanner(System.err);
+        InputScanner scanner = new InputScanner();
 
         while(true) {
 
