@@ -11,13 +11,11 @@
 
 package com.romomo.utility;
 
-import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputScanner implements AutoCloseable {
     private Scanner scanner;
-    private PrintStream outputStream;
 
     public String nextString() {
         return scanner.nextLine();
@@ -31,13 +29,13 @@ public class InputScanner implements AutoCloseable {
             try {
                 value = scanner.nextInt();
             } catch(InputMismatchException error) {
-                outputStream.println("\u001B[31mERRORE ==>\u001B[0m Input non valido, riprova.");
+                Logger.stderr("Input non valido, riprova.");
                 scanner.nextLine();
                 continue;
             }
 
             if (!(value >= 0 && value <= max)) {
-                outputStream.println("\u001B[31mERRORE ==>\u001B[0m Valore fuori scala, riprova.");
+                Logger.stderr("Input fuori scala, riprova.");
                 continue;
             }
 
@@ -48,9 +46,8 @@ public class InputScanner implements AutoCloseable {
         return value;
     }
 
-    public InputScanner(PrintStream outputStream) {
+    public InputScanner() {
         this.scanner = new Scanner(System.in);
-        this.outputStream = outputStream;
     }
 
     @Override
