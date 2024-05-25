@@ -12,6 +12,7 @@
 package com.romomo;
 
 import com.romomo.boundary.BoundaryCliente;
+import com.romomo.boundary.BoundaryImpiegato;
 import com.romomo.utility.InputScanner;
 import com.romomo.utility.Logger;
 import com.romomo.utility.Logger.Level;
@@ -54,7 +55,8 @@ public class Main {
                     break;
 
                 case 2:
-                    throw new UnsupportedOperationException();
+                    BoundaryImpiegato.main(scanner);
+                    break;
             }
             
         }
