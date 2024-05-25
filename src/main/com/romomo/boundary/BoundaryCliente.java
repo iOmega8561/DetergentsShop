@@ -99,6 +99,7 @@ public class BoundaryCliente {
                     return;
                 case 1:
                     BoundaryCliente.registrazione(scanner, controller);
+                    break;
             }
         }
     }
