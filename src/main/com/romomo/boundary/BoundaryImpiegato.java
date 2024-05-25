@@ -40,13 +40,27 @@ public class BoundaryImpiegato {
         }
 
         while (true) {
+
             try {
+
+                float prezzo;
+
+                try {
+                    prezzo = Float.parseFloat(parameters.get(3));
+                } catch(NumberFormatException error) { throw new ParametroInvalido(3, "PREZZO"); }
+
+                int quantita;
+
+                try {
+                    quantita = Integer.parseInt(parameters.get(4));
+                } catch(NumberFormatException error) { throw new ParametroInvalido(4, "QUANTITA'"); }
+
                 controller.aggiuntaProdotto(
                     parameters.get(0), 
                     parameters.get(1), 
                     parameters.get(2),
-                    Float.parseFloat(parameters.get(3)),
-                    Integer.parseInt(parameters.get(4)) 
+                    prezzo,
+                    quantita
                 );
 
                 break;
