@@ -20,4 +20,3 @@ DetergentsShop is a team project developed as a deliverable for our Software Eng
 - Build the application with ```make```
 - Deploy the database using ```docker compose up -d```
 - Run the application with ```make run```
-ciao
