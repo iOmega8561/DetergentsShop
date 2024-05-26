@@ -51,6 +51,70 @@ public class GestionePiattaforma_AggiuntaProdottoTest {
                 0.67f,
                 90
             ),
+
+            new TestCase(
+                "AEER@@@X92", 
+                "PuliMax", 
+                "Bagnodoccia 9 in 1 da uomo, per la cura della tua auto da uomo", 
+                0.67f,
+                90
+            ),
+
+            new TestCase(
+                "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", 
+                "PuliMax", 
+                "Bagnodoccia 9 in 1 da uomo, per la cura della tua auto da uomo", 
+                0.67f,
+                90
+            ),
+
+            new TestCase(
+                "AEERX923", 
+                "PuliMax", 
+                "Bagnodocciaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 
+                0.67f,
+                90
+            ),
+
+            new TestCase(
+                "AEERX923", 
+                "Puli#@Max", 
+                "Bagnodoccia 9 in 1 da uomo, per la cura della tua auto da uomo", 
+                0.67f,
+                90
+            ),
+
+            new TestCase(
+                "AEERX923", 
+                "PuliMaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 
+                "Bagnodoccia 9 in 1 da uomo, per la cura della tua auto da uomo", 
+                0.67f,
+                90
+            ),
+
+            new TestCase(
+                "AEERX923", 
+                "PuliMax", 
+                "Bagnodoccia 9 in 1 da uomo, per la cura della tua auto da uomo", 
+                -0.67f,
+                90
+            ),
+
+            new TestCase(
+                "AEERX923", 
+                "PuliMax", 
+                "Bagnodoccia 9 in 1 da uomo, per la cura della tua auto da uomo", 
+                0.67f,
+                -90
+            ),
+
+            new TestCase(
+                "AEERX923", 
+                "PuliMax", 
+                "Bagnodoccia 9 in 1 da uomo, per la cura della tua auto da uomo", 
+                0.67f,
+                90
+            )
         };
         return Arrays.stream(tests);
     }
