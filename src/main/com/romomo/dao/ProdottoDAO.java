@@ -41,7 +41,7 @@ public class ProdottoDAO implements Interface<String, Prodotto> {
     }
 
     @Override
-    public Map<String, Prodotto> fetchAll() throws SQLException {
+    public Map<String, Prodotto> fetch() throws SQLException {
         if (prodotti.size() != 0) { return prodotti; }
 
         ResultSet result = manager.query("select * from Prodotto");
@@ -65,7 +65,7 @@ public class ProdottoDAO implements Interface<String, Prodotto> {
     }
 
     @Override
-    public void save(Prodotto entity) throws SQLException {
+    public void insert(Prodotto entity) throws SQLException {
 
         String statement = String.format(
             Locale.US,

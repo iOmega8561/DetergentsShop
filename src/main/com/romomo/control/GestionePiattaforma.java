@@ -114,7 +114,7 @@ public class GestionePiattaforma {
             throw new ProdottoEsistente();
         }
 
-        prodottoDAO.save(
+        prodottoDAO.insert(
             new Prodotto(
                 codice, 
                 nome, 
@@ -172,7 +172,7 @@ public class GestionePiattaforma {
             throw new UtenteEsistente();
         }
 
-        clienteDAO.save(
+        clienteDAO.insert(
             new ClienteRegistrato(
                 nomeUtente, 
                 password, 
