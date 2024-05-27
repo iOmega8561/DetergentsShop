@@ -16,34 +16,25 @@ import java.io.PrintStream;
 public class Logger {
 
     public enum Level {
-        NORMAL,
-        ERROR,
-        SUCCESS,
-        INFO,
-        RESET;
+        NORMAL("\u001B[33m"),
+        ERROR("\u001B[31m"),
+        SUCCESS("\u001B[32m"),
+        INFO("\u001B[36m"),
+        RESET("\u001B[0m");
 
-        public String ansiString() {
-            switch (this) {
-                case NORMAL:
-                    return "\u001B[33m";
-            
-                case ERROR:
-                    return "\u001B[31m";
-                
-                case SUCCESS:
-                    return "\u001B[32m";
-                
-                case INFO:
-                    return "\u001B[36m";
+        private String ansiColor;
 
-                default:
-                    return "\u001B[0m";
-            }   
+        public String getColor() {
+            return ansiColor;
+        }
+
+        Level(String ansiColor) {
+            this.ansiColor = ansiColor;
         }
     }
 
     private static void log(Level level, String sender, String msg, PrintStream stream) {
-        stream.println(level.ansiString() + sender + " ==>" + Level.RESET.ansiString() + " " + msg);
+        stream.println(level.getColor() + sender + " ==>" + Level.RESET.getColor() + " " + msg);
     }
 
     public static void stdout(Level level, String sender, String msg) {
