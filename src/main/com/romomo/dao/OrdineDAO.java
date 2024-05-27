@@ -11,8 +11,6 @@
 
 package com.romomo.dao;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,63 +22,30 @@ public class OrdineDAO implements Interface<Ordine> {
 	private Manager manager;
 	
 	private List<Ordine> ordini;
-        
-    public Boolean generaReport(String numeroOrdini) throws SQLException {
-        String statement = String.format(
-            "select count(*) as rowCount from Ordine where numeroOrdine = \"%s\"",
-            numeroOrdini
-        );
-        
-        ResultSet result = manager.query(statement);
-
-        result.next();
-
-        if (result.getInt("rowCount") == 0) { return false; }
-
-        return true;
-    }
     
     @Override
     public List<Ordine> fetchAll() throws SQLException {
-
-        if (ordini.size() != 0) { return ordini; }
-
-        ResultSet result = manager.query("select * from Ordine");
-
-        while(result.next()) {
-            ordini.add(
-                new Ordine(
-                    result.getString("numeroOrdine"),
-                )
-            );
-        }
-        
-        return ordini;
+        throw new UnsupportedOperationException("Unimplemented method 'fetchAll'");
     }
-    
+
     @Override
     public void save(Ordine entity) throws SQLException {
-        String statement = String.format(
-            "insert into Ordine values (\"%s\")",
-            entity.getNumeroOrdini()
-        );
-        
-        manager.queryVoid(statement);
-        ordini.add(entity);
+        throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
 
     @Override
     public void update(Ordine entity) {
-        throw new UnsupportedOperationException("Operazione non supportata 'update'");
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
     @Override
     public void delete(Ordine entity) {
-        throw new UnsupportedOperationException("Operazione non supportata 'delete'");
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
     
     public OrdineDAO() {
         manager = Manager.getInstance();
         ordini = new ArrayList<>();
     }
+
 }
