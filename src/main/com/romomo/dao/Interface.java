@@ -12,15 +12,15 @@
 package com.romomo.dao;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.Map;
 
-public interface Interface<T> {
+public interface Interface<KeyType, Type> {
     
-    List<T> fetchAll() throws SQLException;
+    Map<KeyType, Type> fetchAll() throws SQLException;
 
-    void save(T entity) throws SQLException;
+    void save(Type entity) throws SQLException;
 
-    void update(T entity) throws SQLException;
+    void update(Type entity) throws SQLException;
 
-    void delete(T entity) throws SQLException;
+    void delete(Type entity) throws SQLException;
 }
