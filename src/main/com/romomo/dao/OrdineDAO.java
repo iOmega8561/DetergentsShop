@@ -11,11 +11,13 @@
 
 package com.romomo.dao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.romomo.entity.Ordine;
+import com.romomo.utility.ElementoReport;
 
 public class OrdineDAO implements Interface<Ordine> {
 	
@@ -23,6 +25,29 @@ public class OrdineDAO implements Interface<Ordine> {
 	
 	private List<Ordine> ordini;
     
+    public List<ElementoReport> generaReport(int numeroOrdini) throws SQLException {
+        String statement = String.format(
+            "select O.cliente as Cliente, count(O.id) as NumeroOrdini, sum(O.totale) as TotaleSpeso from Ordine O group by O.cliente having count(O.id) >= %d order by NumeroOrdini;",
+            numeroOrdini
+        );
+
+        List<ElementoReport> risultati = new ArrayList<>();
+
+        ResultSet risultatoQuery = manager.query(statement);
+
+        while(risultatoQuery.next()) {
+            risultati.add(
+                new ElementoReport(
+                    risultatoQuery.getString("Cliente"), 
+                    risultatoQuery.getFloat("TotaleSpeso"),
+                    risultatoQuery.getInt("NumeroOrdini")
+                )
+            );
+        }
+
+        return risultati;
+    }
+
     @Override
     public List<Ordine> fetchAll() throws SQLException {
         throw new UnsupportedOperationException("Unimplemented method 'fetchAll'");

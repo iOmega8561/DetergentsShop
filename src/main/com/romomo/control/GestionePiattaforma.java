@@ -11,9 +11,12 @@
 
 package com.romomo.control;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
+import com.romomo.utility.ElementoReport;
 import com.romomo.dao.ClienteRegistratoDAO;
+import com.romomo.dao.OrdineDAO;
 import com.romomo.dao.ProdottoDAO;
 import com.romomo.entity.ClienteRegistrato;
 import com.romomo.entity.Prodotto;
@@ -35,6 +38,26 @@ public class GestionePiattaforma {
     private GestionePiattaforma() {
         this.clienteDAO = new ClienteRegistratoDAO();
         this.prodottoDAO = new ProdottoDAO();
+        this.ordineDAO = new OrdineDAO();
+    }
+    
+    /*
+     PROPERTIES
+      
+     CASO D'USO: RICHIESTA REPORT
+    */
+
+    private OrdineDAO ordineDAO;
+
+    public List<ElementoReport> richiestaReport(int numeroOrdini) throws Throwable {
+        
+        if (numeroOrdini > 1000 ||
+            numeroOrdini <= 0) {
+
+            throw new ParametroInvalido(0,"NUMERO ORDINI");
+        }
+        
+        return ordineDAO.generaReport(numeroOrdini);
     }
 
     /*
