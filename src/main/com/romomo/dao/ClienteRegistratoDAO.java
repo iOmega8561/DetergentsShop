@@ -11,21 +11,21 @@
 
 package com.romomo.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.romomo.entity.ClienteRegistrato;
 
-public class ClienteRegistratoDAO implements Interface<ClienteRegistrato> {
+public class ClienteRegistratoDAO implements Interface<String, ClienteRegistrato> {
     
     // Class-specific stubs
 
     private Manager manager;
 
-    private List<ClienteRegistrato> clienti;
+    private Map<String, ClienteRegistrato> clienti;
 
     public Boolean check(String nomeUtente, String nrTelefono) throws SQLException {
         String statement = String.format(
@@ -46,16 +46,19 @@ public class ClienteRegistratoDAO implements Interface<ClienteRegistrato> {
     // Supported interface methods
 
     @Override
-    public List<ClienteRegistrato> fetchAll() throws SQLException {
+    public Map<String, ClienteRegistrato> fetchAll() throws SQLException {
 
         if (clienti.size() != 0) { return clienti; }
 
         ResultSet result = manager.query("select * from ClienteRegistrato");
 
         while(result.next()) {
-            clienti.add(
+            String key = result.getString("nomeUtente");
+
+            clienti.put(
+                key,
                 new ClienteRegistrato(
-                    result.getString("nomeUtente"),
+                    key,
                     result.getString("password"),
                     result.getString("nrTelefono"),
                     result.getString("cartaCredito")
@@ -76,11 +79,9 @@ public class ClienteRegistratoDAO implements Interface<ClienteRegistrato> {
             entity.getNrTelefono(),
             entity.getCartaCredito()
         );
-
-
         
         manager.queryVoid(statement);
-        clienti.add(entity);
+        clienti.put(entity.getNomeUtente(), entity);
     }
 
     // Unsupported interface methods
@@ -99,6 +100,6 @@ public class ClienteRegistratoDAO implements Interface<ClienteRegistrato> {
 
     public ClienteRegistratoDAO() {
         manager = Manager.getInstance();
-        clienti = new ArrayList<>();
+        clienti = new HashMap<>();
     }
 }
