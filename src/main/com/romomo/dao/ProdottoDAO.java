@@ -13,17 +13,17 @@ package com.romomo.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Locale;
 
 import com.romomo.entity.Prodotto;
 
-public class ProdottoDAO implements Interface<Prodotto> {
+public class ProdottoDAO implements Interface<String, Prodotto> {
 
     private Manager manager;
 
-    private List<Prodotto> prodotti;
+    private Map<String, Prodotto> prodotti;
 
     public Boolean check(String codice) throws SQLException {
         String statement = String.format(
@@ -41,15 +41,18 @@ public class ProdottoDAO implements Interface<Prodotto> {
     }
 
     @Override
-    public List<Prodotto> fetchAll() throws SQLException {
+    public Map<String, Prodotto> fetchAll() throws SQLException {
         if (prodotti.size() != 0) { return prodotti; }
 
         ResultSet result = manager.query("select * from Prodotto");
 
         while(result.next()) {
-            prodotti.add(
+            String key = result.getString("codice");
+
+            prodotti.put(
+                key,
                 new Prodotto(
-                    result.getString("codice"),
+                    key,
                     result.getString("nome"),
                     result.getString("descrizione"),
                     result.getFloat("prezzo"),
@@ -75,7 +78,7 @@ public class ProdottoDAO implements Interface<Prodotto> {
         );
         
         manager.queryVoid(statement);
-        prodotti.add(entity);
+        prodotti.put(entity.getCodice(), entity);
     }
 
     @Override
@@ -92,6 +95,6 @@ public class ProdottoDAO implements Interface<Prodotto> {
 
     public ProdottoDAO() {
         manager = Manager.getInstance();
-        prodotti = new ArrayList<>();
+        prodotti = new HashMap<>();
     }
 }
