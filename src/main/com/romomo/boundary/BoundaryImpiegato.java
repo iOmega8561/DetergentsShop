@@ -55,6 +55,11 @@ public class BoundaryImpiegato {
                 return;
             }
         }
+        
+        if (risultati.size() == 0) {
+            Logger.stderr("Non ci sono clienti con quel numero di ordini");
+            return;
+        }
 
         for (ElementoReport risultato : risultati) {
             Logger.stdout(
