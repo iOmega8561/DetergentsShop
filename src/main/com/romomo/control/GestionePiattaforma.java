@@ -23,6 +23,7 @@ import com.romomo.entity.Prodotto;
 import com.romomo.exception.ParametroInvalido;
 import com.romomo.exception.UtenteEsistente;
 import com.romomo.exception.ProdottoEsistente;
+import com.romomo.exception.ReportVuoto;
 
 public class GestionePiattaforma {
     
@@ -57,7 +58,14 @@ public class GestionePiattaforma {
             throw new ParametroInvalido(0,"NUMERO ORDINI");
         }
         
-        return ordineDAO.generaReport(numeroOrdini);
+        List<ElementoReport> risultato = ordineDAO.generaReport(numeroOrdini);
+
+        if (risultato.size() == 0) {
+
+            throw new ReportVuoto();
+        }
+
+        return risultato;
     }
 
     /*
