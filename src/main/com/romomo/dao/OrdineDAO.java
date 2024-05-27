@@ -25,7 +25,8 @@ public class OrdineDAO implements Interface<Long, Ordine> {
 	
 	private Manager manager;
 	
-	private Map<Long, Ordine> ordini;
+	@SuppressWarnings("unused")
+    private Map<Long, Ordine> ordini;
     
     public List<ElementoReport> generaReport(int numeroOrdini) throws SQLException {
         String statement = String.format(
