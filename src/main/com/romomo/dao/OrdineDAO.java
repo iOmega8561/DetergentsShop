@@ -14,16 +14,18 @@ package com.romomo.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.romomo.entity.Ordine;
 import com.romomo.utility.ElementoReport;
 
-public class OrdineDAO implements Interface<Ordine> {
+public class OrdineDAO implements Interface<Long, Ordine> {
 	
 	private Manager manager;
 	
-	private List<Ordine> ordini;
+	private Map<Long, Ordine> ordini;
     
     public List<ElementoReport> generaReport(int numeroOrdini) throws SQLException {
         String statement = String.format(
@@ -49,7 +51,7 @@ public class OrdineDAO implements Interface<Ordine> {
     }
 
     @Override
-    public List<Ordine> fetchAll() throws SQLException {
+    public Map<Long, Ordine> fetchAll() throws SQLException {
         throw new UnsupportedOperationException("Unimplemented method 'fetchAll'");
     }
 
@@ -70,7 +72,7 @@ public class OrdineDAO implements Interface<Ordine> {
     
     public OrdineDAO() {
         manager = Manager.getInstance();
-        ordini = new ArrayList<>();
+        ordini = new HashMap<>();
     }
 
 }
