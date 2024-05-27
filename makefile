@@ -19,6 +19,7 @@ test:
 	java -jar deps/junit-platform-console-standalone-1.11.0-M2.jar execute \
 	     -c com.romomo.control.GestionePiattaforma_RegistrazioneTest \
 		 -c com.romomo.control.GestionePiattaforma_AggiuntaProdottoTest \
+		 -c com.romomo.control.GestionePiattaforma_RichiestaReportTest \
 		 -cp deps/mysql-connector-j-8.4.0.jar:bin/main:bin/test
 
 clean:
