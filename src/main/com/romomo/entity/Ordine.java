@@ -1,6 +1,7 @@
 package com.romomo.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Ordine {
 	
@@ -18,7 +19,7 @@ public class Ordine {
         Stato(int valore) {
             this.valore = valore;
         }
-
+        
     }
 
 	private long id;
@@ -28,6 +29,8 @@ public class Ordine {
     private LocalDate data;
 
     private String cliente;
+
+    private List<ElementoCarrello> prodotti;
 
     private Stato stato;
 
@@ -45,6 +48,10 @@ public class Ordine {
 
     public String getCliente() {
         return cliente;
+    }
+
+    public List<ElementoCarrello> getProdotti() {
+        return prodotti;
     }
 
     public Stato getStato() {
