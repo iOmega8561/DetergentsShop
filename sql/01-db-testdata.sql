@@ -28,20 +28,3 @@ insert into Ordine (data, totale, stato, prodotti, cliente, fattorino) values
 ("2024-5-21", 14.5, 0, "{products: [\"PuliMax\", \"AntiFaviJ\"]}", "peppebrescia22", "098109823"),
 ("2024-5-21", 64.5, 0, "{products: [\"PuliMax\", \"AntiFaviJ\"]}", "andreadipre45", "098109823"),
 ("2024-5-21", 44.5, 0, "{products: [\"PuliMax\", \"AntiFaviJ\"]}", "andreadipre45", "098109823");
-
-/*
-set @N = 1;
-
-select
-    O.cliente as Cliente,
-    count(O.id) as NumeroOrdini,
-    sum(O.totale) as TotaleSpeso
-from
-    Ordine O
-group by
-    O.cliente
-having
-    count(O.id) >= @N
-order by
-    NumeroOrdini;
-*/
