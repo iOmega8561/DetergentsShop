@@ -16,9 +16,9 @@ import java.util.Map;
 
 public interface Interface<KeyType, Type> {
     
-    Map<KeyType, Type> fetchAll() throws SQLException;
+    Map<KeyType, Type> fetch() throws SQLException;
 
-    void save(Type entity) throws SQLException;
+    void insert(Type entity) throws SQLException;
 
     void update(Type entity) throws SQLException;
 

@@ -46,7 +46,7 @@ public class ClienteRegistratoDAO implements Interface<String, ClienteRegistrato
     // Supported interface methods
 
     @Override
-    public Map<String, ClienteRegistrato> fetchAll() throws SQLException {
+    public Map<String, ClienteRegistrato> fetch() throws SQLException {
 
         if (clienti.size() != 0) { return clienti; }
 
@@ -70,7 +70,7 @@ public class ClienteRegistratoDAO implements Interface<String, ClienteRegistrato
     }
 
     @Override
-    public void save(ClienteRegistrato entity) throws SQLException {
+    public void insert(ClienteRegistrato entity) throws SQLException {
 
         String statement = String.format(
             "insert into ClienteRegistrato values (\"%s\",\"%s\",\"%s\",\"%s\")",

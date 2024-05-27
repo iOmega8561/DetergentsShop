@@ -52,13 +52,13 @@ public class OrdineDAO implements Interface<Long, Ordine> {
     }
 
     @Override
-    public Map<Long, Ordine> fetchAll() throws SQLException {
-        throw new UnsupportedOperationException("Unimplemented method 'fetchAll'");
+    public Map<Long, Ordine> fetch() throws SQLException {
+        throw new UnsupportedOperationException("Unimplemented method 'fetch'");
     }
 
     @Override
-    public void save(Ordine entity) throws SQLException {
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    public void insert(Ordine entity) throws SQLException {
+        throw new UnsupportedOperationException("Unimplemented method 'insert'");
     }
 
     @Override
