@@ -22,7 +22,11 @@ import com.romomo.utility.Logger.Level;
 
 public class BoundaryCliente {
     
-    private static void registrazione(InputScanner scanner, GestionePiattaforma controller) {
+    private InputScanner scanner;
+
+    private GestionePiattaforma controller;
+
+    private void registrazione() {
 
         List<String> parameters = new ArrayList<>();
 
@@ -74,9 +78,7 @@ public class BoundaryCliente {
         );
     }
 
-    public static void main(InputScanner scanner) {
-
-        GestionePiattaforma controller = GestionePiattaforma.getInstance();
+    public void main() {
 
         while(true) {
 
@@ -89,7 +91,7 @@ public class BoundaryCliente {
             Logger.stdout(
                 Level.INFO, 
                 "BOUNDARY CLIENTE", 
-                "Digitare 0 per tornare al menù principale.\n"
+                "Digitare 0 per tornare al menù principale."
             );
 
             int scelta = scanner.nextInt(1); 
@@ -98,10 +100,14 @@ public class BoundaryCliente {
                 case 0:
                     return;
                 case 1:
-                    BoundaryCliente.registrazione(scanner, controller);
+                    registrazione();
                     break;
             }
         }
     }
 
+    public BoundaryCliente(InputScanner scanner) {
+        this.scanner = scanner;
+        this.controller = GestionePiattaforma.getInstance();
+    }
 }

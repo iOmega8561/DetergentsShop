@@ -23,7 +23,17 @@ import com.romomo.utility.Logger.Level;
 
 public class BoundaryImpiegato {
 
-    private static void richiestaReport(InputScanner scanner, GestionePiattaforma controller) {
+    private InputScanner scanner;
+
+    private GestionePiattaforma controller;
+
+    /*
+     PROPERTIES
+      
+     CASO D'USO: RICHIESTA REPORT
+    */
+
+    private void richiestaReport() {
         
         Logger.stdout(
             Level.NORMAL, 
@@ -75,7 +85,13 @@ public class BoundaryImpiegato {
         }
     }
 
-    private static void aggiuntaProdotto(InputScanner scanner, GestionePiattaforma controller) {
+    /*
+     PROPERTIES
+      
+     CASO D'USO: AGGIUNTA PRODOTTO
+    */
+
+    private void aggiuntaProdotto() {
 
         List<String> parameters = new ArrayList<>();
 
@@ -100,13 +116,17 @@ public class BoundaryImpiegato {
 
                 try {
                     prezzo = Float.parseFloat(parameters.get(3));
-                } catch(NumberFormatException error) { throw new ParametroInvalido(3, "PREZZO"); }
+                } catch(NumberFormatException error) { 
+                    throw new ParametroInvalido(3, "PREZZO"); 
+                }
 
                 int quantita;
 
                 try {
                     quantita = Integer.parseInt(parameters.get(4));
-                } catch(NumberFormatException error) { throw new ParametroInvalido(4, "QUANTITA'"); }
+                } catch(NumberFormatException error) { 
+                    throw new ParametroInvalido(4, "QUANTITA'"); 
+                }
 
                 controller.aggiuntaProdotto(
                     parameters.get(0), 
@@ -142,9 +162,13 @@ public class BoundaryImpiegato {
         );
     }
     
-    public static void main(InputScanner scanner) {
+    /*
+     PROPERTIES
+      
+     CASO D'USO: RICHIESTA REPORT / AGGIUNTA PRODOTTO
+    */
 
-        GestionePiattaforma controller = GestionePiattaforma.getInstance();
+    public void main() {
 
         while(true) {
 
@@ -157,7 +181,7 @@ public class BoundaryImpiegato {
             Logger.stdout(
                 Level.INFO, 
                 "BOUNDARY IMPIEGATO", 
-                "Digitare 0 per tornare al menù principale.\n"
+                "Digitare 0 per tornare al menù principale."
             );
 
             int scelta = scanner.nextInt(2); 
@@ -166,12 +190,19 @@ public class BoundaryImpiegato {
                 case 0:
                     return;
                 case 1:
-                    BoundaryImpiegato.aggiuntaProdotto(scanner, controller);
+                    aggiuntaProdotto();
                     break;
                 case 2:
-                    BoundaryImpiegato.richiestaReport(scanner, controller);
+                    richiestaReport();
                     break;
             }
         }
+    }
+
+    // Init
+
+    public BoundaryImpiegato(InputScanner scanner) {
+        this.scanner = scanner;
+        this.controller = GestionePiattaforma.getInstance();
     }
 }
