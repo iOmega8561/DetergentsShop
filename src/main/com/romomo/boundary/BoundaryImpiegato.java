@@ -16,11 +16,59 @@ import java.util.List;
 
 import com.romomo.control.GestionePiattaforma;
 import com.romomo.exception.ParametroInvalido;
+import com.romomo.utility.ElementoReport;
 import com.romomo.utility.InputScanner;
 import com.romomo.utility.Logger;
 import com.romomo.utility.Logger.Level;
 
 public class BoundaryImpiegato {
+
+    private static void richiestaReport(InputScanner scanner, GestionePiattaforma controller) {
+        
+        Logger.stdout(
+            Level.NORMAL, 
+            "RICHIESTA REPORT", 
+            "Inserisci \"NUMERO ORDINI\""
+        );
+
+        int numeroOrdini = scanner.nextInt(-1);
+        
+        List<ElementoReport> risultati;
+
+        while(true) {
+            try {
+                risultati = controller.richiestaReport(numeroOrdini);
+                break;
+            } catch (ParametroInvalido error) {
+                Logger.stderr(error.getLocalizedMessage());
+
+                Logger.stdout(
+                    Level.NORMAL, 
+                    "RICHIESTA REPORT", 
+                    "Per favore reinserire il parametro:"
+                );
+
+                numeroOrdini = scanner.nextInt(-1);
+
+            } catch (Throwable error) {
+                Logger.stderr(error.getLocalizedMessage());
+                return;
+            }
+        }
+
+        for (ElementoReport risultato : risultati) {
+            Logger.stdout(
+                Level.SUCCESS, 
+                "REPORT", 
+                String.format(
+                    "Cliente: %s; Ordini: %d; Totale: %.2f", 
+                    risultato.getCliente(),
+                    risultato.getOrdini(),
+                    risultato.getTotale()
+                )
+            );
+        }
+    }
 
     private static void aggiuntaProdotto(InputScanner scanner, GestionePiattaforma controller) {
 
@@ -116,7 +164,8 @@ public class BoundaryImpiegato {
                     BoundaryImpiegato.aggiuntaProdotto(scanner, controller);
                     break;
                 case 2:
-                    throw new UnsupportedOperationException();
+                    BoundaryImpiegato.richiestaReport(scanner, controller);
+                    break;
             }
         }
     }
