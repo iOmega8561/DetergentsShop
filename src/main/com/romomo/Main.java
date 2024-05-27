@@ -21,13 +21,16 @@ public class Main {
 
     public static void main(String[] args) {
 
+        InputScanner scanner = new InputScanner();
+
+        BoundaryCliente bCliente = new BoundaryCliente(scanner);
+        BoundaryImpiegato bImpiegato = new BoundaryImpiegato(scanner);
+
         Logger.stdout(
             Level.NORMAL, 
             "DETERGENTS", 
             "Benvenuti in Detergents Shop"
         );
-
-        InputScanner scanner = new InputScanner();
 
         while(true) {
 
@@ -40,7 +43,7 @@ public class Main {
             Logger.stdout(
                 Level.INFO, 
                 "DETERGENTS", 
-                "Digitare 0 per chiudere l'applicativo.\n"
+                "Digitare 0 per chiudere l'applicativo."
             );
 
             int scelta = scanner.nextInt(2); 
@@ -51,11 +54,11 @@ public class Main {
                     System.exit(0);
 
                 case 1:
-                    BoundaryCliente.main(scanner);
+                    bCliente.main();
                     break;
 
                 case 2:
-                    BoundaryImpiegato.main(scanner);
+                    bImpiegato.main();
                     break;
             }
             
