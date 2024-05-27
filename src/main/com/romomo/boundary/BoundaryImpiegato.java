@@ -104,7 +104,7 @@ public class BoundaryImpiegato {
                 "AGGIUNTA PRODOTTO", 
                 String.format("Inserisci \"%s\":", label)
             );
-
+   
             parameters.add(scanner.nextString());
         }
 
