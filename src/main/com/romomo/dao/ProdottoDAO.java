@@ -56,7 +56,7 @@ public class ProdottoDAO implements Interface<String, Prodotto> {
                     result.getString("nome"),
                     result.getString("descrizione"),
                     result.getFloat("prezzo"),
-                    result.getInt("quantita")
+                    result.getInt("quant")
                 )
             );
         }
