@@ -22,9 +22,14 @@ insert into Impiegato values
 insert into Fattorino values 
 ("098109823", "3502348076");
 
+insert into Prodotto values
+("GRNGBLN0323", "GreenGoblin", "Pesticida per aracnidi col costume rosso e blu", 5.61, 800),
+("UNDSCRCH001", "UnderScorch", "Detergente intimo a base di peperoncino Carolina Reaper", 10.19, 100),
+("AFTRSLP0090", "AfterSlap", "Crema lenitiva per da applicare dopo gli schiaffi di Will Smith", 3.99, 300);
+
 insert into Ordine (data, totale, stato, prodotti, cliente, fattorino) values 
-("2024-5-21", 34.5, 0, "{products: [\"PuliMax\", \"AntiFaviJ\"]}", "peppebrescia22", "098109823"),
-("2024-5-21", 24.5, 0, "{products: [\"PuliMax\", \"AntiFaviJ\"]}", "peppebrescia22", "098109823"),
-("2024-5-21", 14.5, 0, "{products: [\"PuliMax\", \"AntiFaviJ\"]}", "peppebrescia22", "098109823"),
-("2024-5-21", 64.5, 0, "{products: [\"PuliMax\", \"AntiFaviJ\"]}", "andreadipre45", "098109823"),
-("2024-5-21", 44.5, 0, "{products: [\"PuliMax\", \"AntiFaviJ\"]}", "andreadipre45", "098109823");
+("2024-5-21", 11.22, 2, "[{\"prodotto\": \"GRNGBLN0323\", \"quantita\": 2}]", "peppebrescia22", "098109823"),
+("2024-5-21", 50.95, 2, "[{\"prodotto\": \"UNDSCRCH001\", \"quantita\": 5}]", "peppebrescia22", "098109823"),
+("2024-5-21", 58.93, 2, "[{\"prodotto\": \"AFTRSLP0090\", \"quantita\": 2},{\"prodotto\": \"UNDSCRCH001\", \"quantita\": 5}]", "peppebrescia22", "098109823"),
+("2024-5-21", 11.22, 2, "[{\"prodotto\": \"GRNGBLN0323\", \"quantita\": 2}]", "andreadipre45", "098109823"),
+("2024-5-21", 7.98, 2, "[{\"prodotto\": \"AFTRSLP0090\", \"quantita\": 2}]", "andreadipre45", "098109823");
