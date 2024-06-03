@@ -78,12 +78,14 @@ public class Ordine {
         float importo,
         LocalDate data,
         String cliente,
+        List<ElementoCarrello> prodotti,
         Stato stato
     ) {
         this.id = id;
         this.importo = importo;
         this.data = data;
         this.cliente = cliente;
+        this.prodotti = prodotti;
         this.stato = stato;
     }
 
