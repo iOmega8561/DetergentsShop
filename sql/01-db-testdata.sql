@@ -17,10 +17,10 @@ insert into ClienteRegistrato values
 ("giacomolabriola", "ezpassword", "3509908076", "4444555566667777");
 
 insert into Impiegato values 
-("098109823", "ezpassword");
+(098109823, "ezpassword");
 
 insert into Fattorino values 
-("098109823", "3502348076");
+(098109823, "3502348076");
 
 insert into Prodotto values
 ("GRNGBLN0323", "GreenGoblin", "Pesticida per aracnidi col costume rosso e blu", 5.61, 800),
