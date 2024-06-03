@@ -22,9 +22,12 @@ import com.romomo.entity.Ordine;
 import com.romomo.utility.ElementoReport;
 
 public class OrdineDAO implements Interface<Long, Ordine> {
-	
+
 	private Manager manager;
 	
+    @SuppressWarnings("unused")
+    private ProdottoDAO prodottoDAO;
+
 	@SuppressWarnings("unused")
     private Map<Long, Ordine> ordini;
     
@@ -71,9 +74,10 @@ public class OrdineDAO implements Interface<Long, Ordine> {
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
     
-    public OrdineDAO() {
-        manager = Manager.getInstance();
-        ordini = new HashMap<>();
+    public OrdineDAO(ProdottoDAO prodottoDAO) {
+        this.manager = Manager.getInstance();
+        this.prodottoDAO = prodottoDAO;
+        this.ordini = new HashMap<>();
     }
 
 }

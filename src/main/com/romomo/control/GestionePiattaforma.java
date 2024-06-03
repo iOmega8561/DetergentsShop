@@ -39,7 +39,7 @@ public class GestionePiattaforma {
     private GestionePiattaforma() {
         this.clienteDAO = new ClienteRegistratoDAO();
         this.prodottoDAO = new ProdottoDAO();
-        this.ordineDAO = new OrdineDAO();
+        this.ordineDAO = new OrdineDAO(this.prodottoDAO);
     }
     
     /*
