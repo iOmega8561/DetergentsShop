@@ -8,12 +8,13 @@
 # furnished to do so, subject to the following conditions:
 
 build:
-	javac -d bin/main $$(find ./src/main | grep .java) && \
+	javac -d bin/main $$(find ./src/main | grep .java) \
+		  -cp bin/main:deps/json-simple-1.1.1.jar && \
 	javac -d bin/test $$(find ./src/test | grep .java) \
 	      -cp bin/main:deps/junit-platform-console-standalone-1.11.0-M2.jar
 
 run:
-	java -cp deps/mysql-connector-j-8.4.0.jar:bin/main com.romomo.Main
+	java -cp deps/json-simple-1.1.1.jar:deps/mysql-connector-j-8.4.0.jar:bin/main com.romomo.Main
 
 test:
 	java -jar deps/junit-platform-console-standalone-1.11.0-M2.jar execute \
