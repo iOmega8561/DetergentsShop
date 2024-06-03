@@ -19,18 +19,19 @@ import java.util.List;
 import java.util.Map;
 
 import com.romomo.entity.Ordine;
+import com.romomo.entity.Prodotto;
+import com.romomo.entity.Ordine.Stato;
 import com.romomo.utility.ElementoReport;
+import com.romomo.utility.JSONParser;
 
 public class OrdineDAO implements Interface<Long, Ordine> {
 
 	private Manager manager;
 	
-    @SuppressWarnings("unused")
     private ProdottoDAO prodottoDAO;
 
-	@SuppressWarnings("unused")
     private Map<Long, Ordine> ordini;
-    
+
     public List<ElementoReport> generaReport(int numeroOrdini) throws SQLException {
         String statement = String.format(
             "select O.cliente as Cliente, count(O.id) as NumeroOrdini, sum(O.totale) as TotaleSpeso from Ordine O group by O.cliente having count(O.id) >= %d order by NumeroOrdini;",
@@ -56,7 +57,32 @@ public class OrdineDAO implements Interface<Long, Ordine> {
 
     @Override
     public Map<Long, Ordine> fetch() throws SQLException {
-        throw new UnsupportedOperationException("Unimplemented method 'fetch'");
+        if (ordini.size() != 0) { return ordini; }
+
+        Map<String, Prodotto> mappaProdotti = prodottoDAO.fetch();
+
+        JSONParser jsonParser = new JSONParser();
+
+        ResultSet result = manager.query("select * from Ordine");
+
+        while(result.next()) {
+
+            long key = result.getLong("id");
+
+            ordini.put(
+                key,
+                new Ordine(
+                    key,
+                    result.getFloat("totale"),
+                    result.getDate("data").toLocalDate(),
+                    result.getString("cliente"),
+                    jsonParser.parseProdotti(result.getString("prodotti"), mappaProdotti),
+                    Stato.getStato(result.getInt("stato"))
+                )
+            );
+        }
+        
+        return ordini;
     }
 
     @Override

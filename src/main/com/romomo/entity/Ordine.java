@@ -27,6 +27,17 @@ public class Ordine {
             return valore;
         }
 
+        static public Stato getStato(int valore) {
+            switch (valore) {
+                case 0:
+                    return Stato.ORDINATO;
+                case 1:
+                    return Stato.INCORSO;
+                default:
+                    return Stato.CONSEGNATO;
+            }
+        }
+
         Stato(int valore) {
             this.valore = valore;
         }
