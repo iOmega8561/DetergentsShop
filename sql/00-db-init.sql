@@ -19,12 +19,12 @@ create table if not exists ClienteRegistrato(
 );
 
 create table if not exists Impiegato(
-	codice integer primary key,
+	codice bigint primary key,
     password varchar(255) not null
 );
 
 create table if not exists Fattorino(
-	codice integer primary key,
+	codice bigint primary key,
     nrTelefono varchar(10) unique not null
 );
 
@@ -43,13 +43,13 @@ create table if not exists Prodotto(
 );
 
 create table if not exists Ordine(
-	id integer primary key auto_increment,
+	id bigint primary key auto_increment,
     data date not null,
     totale float not null,
     stato int(2) not null,
     prodotti longtext not null,
     cliente varchar(255) not null,
-    fattorino integer not null,
+    fattorino bigint not null,
     
     constraint rif_cliente foreign key (cliente) references ClienteRegistrato(nomeUtente),
     constraint rif_fattorino foreign key (fattorino) references Fattorino(codice),
