@@ -22,7 +22,23 @@ import org.json.simple.parser.ParseException;
 import com.romomo.entity.ElementoCarrello;
 import com.romomo.entity.Prodotto;
 
-public class JSONParser extends org.json.simple.parser.JSONParser {
+public class JSONCoder extends org.json.simple.parser.JSONParser {
+    
+    @SuppressWarnings("unchecked")
+    static public String encodeProdotti(List<ElementoCarrello> prodotti) {
+        JSONArray jsonArray = new JSONArray();
+
+        for (ElementoCarrello prodotto : prodotti) {
+            JSONObject obj = new JSONObject();
+
+            obj.put("prodotto", prodotto.getProdotto().getCodice());
+            obj.put("quantita", prodotto.getQuantita());
+
+            jsonArray.add(obj);
+        }
+
+        return jsonArray.toString();
+    }
 
     public List<ElementoCarrello> parseProdotti(
         String jsonArrayString, 
