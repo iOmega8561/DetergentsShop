@@ -16,13 +16,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import com.romomo.entity.Ordine;
 import com.romomo.entity.Prodotto;
 import com.romomo.entity.Ordine.Stato;
 import com.romomo.utility.ElementoReport;
-import com.romomo.utility.JSONParser;
+import com.romomo.utility.JSONCoder;
 
 public class OrdineDAO implements Interface<Long, Ordine> {
 
@@ -61,7 +62,7 @@ public class OrdineDAO implements Interface<Long, Ordine> {
 
         Map<String, Prodotto> mappaProdotti = prodottoDAO.fetch();
 
-        JSONParser jsonParser = new JSONParser();
+        JSONCoder jsonParser = new JSONCoder();
 
         ResultSet result = manager.query("select * from Ordine");
 
@@ -76,6 +77,7 @@ public class OrdineDAO implements Interface<Long, Ordine> {
                     result.getFloat("totale"),
                     result.getDate("data").toLocalDate(),
                     result.getString("cliente"),
+                    result.getLong("fattorino"),
                     jsonParser.parseProdotti(result.getString("prodotti"), mappaProdotti),
                     Stato.getStato(result.getInt("stato"))
                 )
@@ -86,8 +88,35 @@ public class OrdineDAO implements Interface<Long, Ordine> {
     }
 
     @Override
-    public void insert(Ordine entity) throws SQLException {
-        throw new UnsupportedOperationException("Unimplemented method 'insert'");
+    public void insert(Ordine entity) throws SQLException {        
+
+        String statement = String.format(
+            Locale.US,
+            "insert into Ordine (data, totale, stato, prodotti, cliente, fattorino) values (\"%s\", %.2f, %d,\"%s\",\"%s\", %d) returning id",
+            entity.getData().toString(),
+            entity.getImporto(),
+            entity.getStato().getValore(),
+            JSONCoder.encodeProdotti(entity.getProdotti()).replace("\"", "\\\""),
+            entity.getCliente(),
+            entity.getFattorino()
+        );
+        
+        ResultSet result = manager.query(statement); result.next();
+
+        long key = result.getLong("id");
+
+        ordini.put(
+            key, 
+            new Ordine(
+                key, 
+                entity.getImporto(), 
+                entity.getData(), 
+                entity.getCliente(), 
+                entity.getFattorino(), 
+                entity.getProdotti(), 
+                entity.getStato()
+            )
+        );
     }
 
     @Override
