@@ -18,7 +18,14 @@ public class InputScanner implements AutoCloseable {
     private Scanner scanner;
 
     public String nextString() {
-        return scanner.nextLine();
+        return scanner.nextLine()
+                    .replace("\\", "\\\\")
+                    .replace("\t", "\\t")
+                    .replace("\b", "\\b")
+                    .replace("\n", "\\n")
+                    .replace("\r", "\\r")
+                    .replace("\f", "\\f")
+                    .replace("\"", "\\\"");
     }
 
     public int nextInt(int max) {
