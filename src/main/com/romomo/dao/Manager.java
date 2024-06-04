@@ -36,7 +36,7 @@ public final class Manager {
 
     // Properties
 
-    private String url = "jdbc:mariadb://localhost:3306/detergents?serverTimezone=UTC";
+    private String url = "jdbc:mariadb://localhost:33306/detergents?serverTimezone=UTC";
 
     private Connection connection;
 
