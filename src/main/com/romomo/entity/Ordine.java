@@ -52,6 +52,8 @@ public class Ordine {
 
     private String cliente;
 
+    private long fattorino;
+
     private List<ElementoCarrello> prodotti;
 
     private Stato stato;
@@ -72,6 +74,10 @@ public class Ordine {
         return cliente;
     }
 
+    public long getFattorino() {
+        return fattorino;
+    }
+
     public List<ElementoCarrello> getProdotti() {
         return prodotti;
     }
@@ -89,6 +95,7 @@ public class Ordine {
         float importo,
         LocalDate data,
         String cliente,
+        long fattorino,
         List<ElementoCarrello> prodotti,
         Stato stato
     ) {
@@ -96,6 +103,7 @@ public class Ordine {
         this.importo = importo;
         this.data = data;
         this.cliente = cliente;
+        this.fattorino = fattorino;
         this.prodotti = prodotti;
         this.stato = stato;
     }
