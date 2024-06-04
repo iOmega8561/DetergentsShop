@@ -28,8 +28,8 @@ insert into Prodotto values
 ("AFTRSLP0090", "AfterSlap", "Crema lenitiva per da applicare dopo gli schiaffi di Will Smith", 3.99, 300);
 
 insert into Ordine (data, totale, stato, prodotti, cliente, fattorino) values 
-("2024-5-21", 11.22, 2, "[{\"prodotto\": \"GRNGBLN0323\", \"quantita\": 2}]", "peppebrescia22", "098109823"),
-("2024-5-21", 50.95, 2, "[{\"prodotto\": \"UNDSCRCH001\", \"quantita\": 5}]", "peppebrescia22", "098109823"),
+("2024-5-21", 11.22, 2, "[{\"prodotto\": \"GRNGBLN0323\", \"quantita\": 2}]", "peppebrescia22", 098109823),
+("2024-5-21", 50.95, 2, "[{\"prodotto\": \"UNDSCRCH001\", \"quantita\": 5}]", "peppebrescia22", 098109823),
 ("2024-5-21", 58.93, 2, "[{\"prodotto\": \"AFTRSLP0090\", \"quantita\": 2},{\"prodotto\": \"UNDSCRCH001\", \"quantita\": 5}]", "peppebrescia22", "098109823"),
-("2024-5-21", 11.22, 2, "[{\"prodotto\": \"GRNGBLN0323\", \"quantita\": 2}]", "andreadipre45", "098109823"),
-("2024-5-21", 7.98, 2, "[{\"prodotto\": \"AFTRSLP0090\", \"quantita\": 2}]", "andreadipre45", "098109823");
+("2024-5-21", 11.22, 2, "[{\"prodotto\": \"GRNGBLN0323\", \"quantita\": 2}]", "andreadipre45", 098109823),
+("2024-5-21", 7.98, 2, "[{\"prodotto\": \"AFTRSLP0090\", \"quantita\": 2}]", "andreadipre45", 098109823);
